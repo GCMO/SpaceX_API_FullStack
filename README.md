@@ -1,2 +1,3 @@
 Using SpaceX GraphQL API https://api.spacex.land/graphql/ presented the data on a master-detail-view page. 
-TechStack: REACT, Bootstrap, SCSS Apollo, GraphQL, Node, Express, Mongoose, Google Firebase, 
+FRONT-END: ReactJS, Bootstrap and CSS (via CDN see index.html ) Apollo, GraphQL 
+BACK-END: Node, Express, GraphQL, Apollo 
