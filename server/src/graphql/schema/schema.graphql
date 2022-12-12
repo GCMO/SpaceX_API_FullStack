@@ -1,14 +1,6 @@
-type Query  {
-    favorites: [Favorite]
-    favorite(id: ID!): Favorite
+# GraphQL Schema
 
+type Favorite {
+  id: ID!
+  mission_name: String!
 }
-
-type Mutation {
-    addFavorite(id: ID!): Favorite
-    removeFavorite(id: ID!): Favorite
-}
-
-
-
-
