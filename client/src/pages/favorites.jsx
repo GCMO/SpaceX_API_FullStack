@@ -1,8 +1,10 @@
-import React from 'react'
+import FavMasterList from '../components/FavMasterList'
 
 const favorites = () => {
   return (
-    <div>favorites</div>
+    <div>
+      <FavMasterList />
+    </div>
   )
 }
 

@@ -3,7 +3,7 @@ import {useQuery} from '@apollo/client';
 import {GET_LAUNCH} from '../graphql/queries';
 import Spinner from './Spinner';
 
-const DetailList = ({ user }) => {
+const FavDetailList = ({ user }) => {
     
     const {data, error, loading} = useQuery(GET_LAUNCH, {
         variables: {id: user.id },
@@ -31,3 +31,5 @@ const DetailList = ({ user }) => {
       </div>
     );
 };
+
+export default FavDetailList;

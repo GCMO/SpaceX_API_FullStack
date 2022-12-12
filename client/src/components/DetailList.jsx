@@ -32,6 +32,7 @@ const DetailList = ({ user }) => {
     );
 };
 
+export default DetailList;
 
 
 
@@ -53,4 +54,3 @@ const DetailList = ({ user }) => {
 //     setLaunchDetails(json);
 //   })();
 // }, [user]);
-export default DetailList;

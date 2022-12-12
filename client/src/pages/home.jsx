@@ -1,8 +1,11 @@
-import React from 'react'
+import MasterList from "../components/MasterList"
+import DetailList from "../components/DetailList"
 
 const home = () => {
   return (
-    <div>home</div>
+    <div>
+      <MasterList />
+    </div>
   )
 }
 

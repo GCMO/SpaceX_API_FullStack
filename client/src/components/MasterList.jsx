@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { FaRocket, FaHeart } from 'react-icons/fa';
 //Apollo
-import { useQuery, useLazyQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { GET_LAUNCHES } from '../graphql/queries';
 //Components
 import DetailList from './DetailList';
@@ -11,7 +11,6 @@ const MasterList = () => {
   const [selectedLaunch, setSelectedLaunch] = useState(null);
   const [next10Launches, setNext10Launches] = useState(0);
   
-
   const onClick = (e) => {
     e.preventDefault();
     setNext10Launches(next10Launches+10);
@@ -24,15 +23,14 @@ const MasterList = () => {
   // console.log('first10', data?.launches);
   // console.log(data?.launches[0].mission_name);  
 
+  const favLaunch = async () => {
+    console.log('favouriting launch', selectedLaunch.id);
+  }
 
   if (loading) {return <Spinner/>;}
   if(error) {return <p>ERROR: {error.message}</p>};
 
     
-    const favLaunch = async () => {
-      //  data.launches.id
-      console.log('favouriting launch');
-    }
         
   return (
     <div className='d-flex justify-content-left p-5 ' >
@@ -42,7 +40,7 @@ const MasterList = () => {
         <hr/>
         <ul>
           {data?.launches.map(u => (
-            <li key={u.id} onClick={() => setSelectedLaunch(u)}>{u.id}-{u.mission_name}</li>
+            <li key={u.id} onClick={() => setSelectedLaunch(u)}>{u.id} - {u.mission_name}</li>
             ))}
         </ul>
         <button 
@@ -55,8 +53,8 @@ const MasterList = () => {
         <div className='d-flex justify-content-between'>
           <h4>LAUNCH DETAILS</h4>
           <button 
-            className='btn btn-danger btn-sm p-1' 
-            onClick={favLaunch}>
+            className='btn btn-danger p-1' 
+            onClick={favLaunch}>  
             <FaHeart size='14px' />  LIKE
           </button>
         </div>
@@ -71,22 +69,3 @@ const MasterList = () => {
 };
 
 export default MasterList;
-
-
-
-
-
-
-
-// DISCARD
-// fetch launches with graphql
-// useEffect(() => { (async () => {
-//   trial.then((res) => {
-//   // const resp = await fetch('https://jsonplaceholder.typicode.com/users');
-//   //   const json = await resp.json();
-//   //   setLaunch(json);
-//     console.log(res.data);
-//     setLaunch(res.data.launchesPast);
-//   });
-// })();
-// }, []);
