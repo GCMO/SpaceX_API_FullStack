@@ -1,0 +1,14 @@
+type Query  {
+    favorites: [Favorite]
+    favorite(id: ID!): Favorite
+
+}
+
+type Mutation {
+    addFavorite(id: ID!): Favorite
+    removeFavorite(id: ID!): Favorite
+}
+
+
+
+
