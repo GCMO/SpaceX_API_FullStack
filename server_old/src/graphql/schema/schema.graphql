@@ -1,6 +1,0 @@
-# GraphQL Schema
-
-type Favorite {
-  id: ID!
-  mission_name: String!
-}
