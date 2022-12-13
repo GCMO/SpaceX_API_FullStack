@@ -1,0 +1,6 @@
+QUESTION
+A short motivation to what Google Cloud service you would use to host the backend and why; should be included in the project as “cloud.txt”. 
+
+ANSWER
+The most efficient solution that helps minimize resources both at dev. and build time should be Google Firebase. 
+Firebase can host pretty much any coding language, API framework, DB or server. So it should have no issue hosting a humble React App with Node, Express, Apollo Server and GraphQL API. (Further more it is free of charge for the first 12 months and then depending on usage at least around 25$ per month). 
