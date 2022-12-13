@@ -1,11 +1,14 @@
 import MasterList from "../components/MasterList"
 import DetailList from "../components/DetailList"
+import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
+import { spaceXClient } from "../ApolloClients";
+
 
 const home = () => {
   return (
-    <div>
-      <MasterList />
-    </div>
+    <ApolloProvider client={spaceXClient}>
+        <MasterList />
+    </ApolloProvider>
   )
 }
 

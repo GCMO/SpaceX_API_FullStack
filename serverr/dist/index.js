@@ -1,42 +1,94 @@
-import { ApolloServer } from '@apollo/server';
-import { expressMiddleware } from '@apollo/server/express4';
-import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
-import express from 'express';
-import http from 'http';
-// import cors from 'cors';
-import bodyParser from 'body-parser';
-import { typeDefs } from './schema.js';
-import { resolvers } from './resolver.js';
-// // A schema is a collection of type definitions (hence "typeDefs")
-// // that together define the "shape" of queries that are executed against your data.
-// const typeDefs = `#graphql
-//   type FavoriteLaunch {
-//     id: ID!
-//     mission_name: String!
-//   }
-//   # The "Query" type is special: it lists all of the available queries that
-//   # clients can execute, along with the return type for each. 
-//   type Query {
-//     likes: [FavoriteLaunch]
-//   }
-// `;
-// dummy data
-// const liked = [
-//     {
-//         id: 1,
-//         mission_name: 'FalconSat',
-//     },
-//     {
-//         id: 2,
-//         mission_name: 'DemoSat',
-//     },
-// ];
-// Resolvers define the technique for fetching the types defined in the schema.
-// const resolvers = {
-//     Query: {
-//         likes: () => liked,
-//     },
-// };
+import { ApolloServer } from "@apollo/server";
+import { expressMiddleware } from "@apollo/server/express4";
+import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
+import express from "express";
+import http from "http";
+import cors from "cors";
+import bodyParser from "body-parser";
+// SCHEMA or collection of type definitions - "typeDefs"
+const typeDefs = `#graphql
+  type FavoriteLaunch {
+    id: ID!
+    mission_name: String!
+    launch_date_local: String
+    launch_year: String
+    details: String
+    links: String
+    rocket: String
+    launch_site: String
+  }
+  
+  type Query {
+    likes: [FavoriteLaunch]
+  }
+
+  type Mutation {
+    savedLaunch(
+    id: ID!, 
+    mission_name: String!, 
+    launch_date_local: String, 
+    launch_year: String, 
+    details: String, 
+    links: String, 
+    rocket: String, 
+    launch_site: String 
+    ) : FavoriteLaunch
+
+    deleteLaunch(id: ID!) : FavoriteLaunch
+    
+    likes: [FavoriteLaunch]
+  }
+`;
+// dummy data -- IN MEMORY DATA
+const likes = [
+// {
+//     id: '1',
+//     mission_name: 'FalconSat',
+// },
+// {
+//     id: '2',
+//     mission_name: 'DemoSat',
+// },
+];
+// Resolvers define the script for fetching the types expressed in the schema.
+const resolvers = {
+    Query: {
+        likes: () => likes,
+    },
+    Mutation: {
+        savedLaunch: (_, { id, mission_name, launch_date_local, launch_year, details, links, rocket, launch_site, }) => {
+            likes.push({
+                id,
+                mission_name,
+                launch_date_local,
+                launch_year,
+                details,
+                links,
+                rocket,
+                launch_site,
+            });
+            console.log("LIKES", likes);
+            return {
+                id,
+                mission_name,
+                launch_date_local,
+                launch_year,
+                details,
+                links,
+                rocket,
+                launch_site,
+            };
+        },
+        deleteLaunch: (_, { id }) => {
+            const index = likes.findIndex((FavoriteLaunch) => FavoriteLaunch.id === id);
+            if (index === -1) {
+                throw new Error("FavoriteLaunch not found");
+            }
+            const [FavoriteLaunch] = likes.splice(index, 1);
+            return FavoriteLaunch;
+        },
+    },
+};
 // ---> Required logic for integrating with Express
 const app = express();
 // Our httpServer handles incoming requests to our Express app.
@@ -54,10 +106,9 @@ const server = new ApolloServer({
 await server.start();
 // Set up our Express middleware to handle CORS, body parsing,
 // and our expressMiddleware function.
-app.use('/graphql', 
-// only if you have a DB to connect to
-// cors<cors.CorsRequest>(), 
-bodyParser.json(), 
+app.use("/graphql", cors({
+    origin: ["http://localhost:3001", "http://localhost:3000"],
+}), bodyParser.json(), 
 // expressMiddleware accepts the same arguments:
 // an Apollo Server instance and optional configuration options
 expressMiddleware(server, {

@@ -1,29 +1,32 @@
 import React, { useState } from 'react';
-import { FaRocket, FaHeart, FaTrash } from 'react-icons/fa';
+import { FaHeart, FaTrash } from 'react-icons/fa';
 //Apollo
-import { useQuery } from '@apollo/client';
-import { GET_LAUNCHES } from '../graphql/queries';
+import { useQuery, useMutation } from '@apollo/client';
+import { GET_FAVLAUNCHES } from '../graphql/queries';
+import { DELETE_LAUNCH } from '../graphql/mutations';
 //Components
-import DetailList from './DetailList';
+import { localClient } from '../ApolloClients';
+import FavDetailList from './FavDetailList';
 import Spinner from './Spinner';
 
 const FavMasterList = () => {
   const [selectedLaunch, setSelectedLaunch] = useState(null);
-  const [next10Launches, setNext10Launches] = useState(0);
   
-
-  const onClick = (e) => {
-    e.preventDefault();
-    setNext10Launches(next10Launches+10);
-  }
-  
-  const {data, error, loading} = useQuery(GET_LAUNCHES, {
-    variables: { limit: 10, offset: next10Launches },
+  const [mutateFunction] = useMutation(DELETE_LAUNCH, {
+    client: localClient,
   });
 
-  const deleteFavLaunch = async () => {
-    console.log('favouriting launch');
-  }
+  const {data, error, loading} = useQuery(GET_FAVLAUNCHES);
+  
+  // Delete launch favorited from server
+  const deleteFavLaunch = async (e) => {
+      e.preventDefault();
+      mutateFunction({
+        variables: {
+          id: selectedLaunch.id }
+          });
+      console.log('favouriting launch' );
+    }
 
   if (loading) {return <Spinner/>;}
   if(error) {return <p>ERROR: {error.message}</p>};
@@ -36,14 +39,10 @@ const FavMasterList = () => {
         <h4> <FaHeart color='red' size='20px' /> LAUNCHES</h4>
         <hr/>
         <ul>
-          {data?.launches.map(u => (
+          {data?.likes.map(u => (
             <li key={u.id} onClick={() => setSelectedLaunch(u)}>{u.id} - {u.mission_name}</li>
             ))}
         </ul>
-        <button 
-          className='btn btn-secondary btn-sm m-3' onClick={onClick}>
-            <FaRocket /> MORE FAVORITES
-        </button>
       </div>
      
       <div className='LaunchDetails'>
@@ -57,7 +56,7 @@ const FavMasterList = () => {
         </div>
         <hr/>
         {selectedLaunch ? 
-          <DetailList user={selectedLaunch} />
+          <FavDetailList selectedLaunch={selectedLaunch} />
           : <h4> ⬅ Select a launch</h4>}
       </div>
 

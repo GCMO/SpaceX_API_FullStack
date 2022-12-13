@@ -1,31 +1,31 @@
 // import React, { useState } from 'react';
-import {useQuery} from '@apollo/client';
-import {GET_LAUNCH} from '../graphql/queries';
-import Spinner from './Spinner';
+// import {useQuery} from '@apollo/client';
+// import {GET_FAVLAUNCHES} from '../graphql/queries';
+// import Spinner from './Spinner';
 
-const FavDetailList = ({ user }) => {
+const FavDetailList = ({ selectedLaunch }) => {
     
-    const {data, error, loading} = useQuery(GET_LAUNCH, {
-        variables: {id: user.id },
-    });
-    const launchDetails = data?.launch;
-    console.log('SX_DATA', data?.launch );
+    // const {data, error, loading} = useQuery(GET_FAVLAUNCHES, {
+    //     variables: {id: user.id },
+    // });
+    const launchFavDetails = selectedLaunch;
+    console.log('SX_DATA', selectedLaunch );
     
-    if (loading) {return <Spinner/>;}
-    if(error) {return <p>ERROR: {error.message}</p>};
+    // if (loading) {return <Spinner/>;}
+    // if(error) {return <p>ERROR: {error.message}</p>};
   
     return (
       <div >
-        {launchDetails && (
+        {launchFavDetails && (
           <>
             <ul>
-              <li><strong>Mission Name: </strong> {launchDetails.mission_name}</li>
-              <li><strong>Rocket Name: </strong>{launchDetails.rocket.rocket.name}</li>
-              <li><strong>Year: </strong>{launchDetails.launch_year}</li>
-              <li><strong>Launch Site: </strong>{launchDetails.launch_site.site_name_long}</li>
-              <li><strong>Details: </strong> {launchDetails.details}</li>
+              <li><strong>Mission Name: </strong> {launchFavDetails.mission_name}</li>
+              <li><strong>Rocket Name: </strong>{launchFavDetails.rocket}</li>
+              <li><strong>Year: </strong>{launchFavDetails.launch_year}</li>
+              <li><strong>Launch Site: </strong>{launchFavDetails.launch_site}</li>
+              <li><strong>Details: </strong> {launchFavDetails.details}</li>
             </ul>
-            <img className='rocketImg' alt='' src={launchDetails.links.flickr_images}></img> 
+            <img className='rocketImg' alt='' src={launchFavDetails.links}></img> 
           </>
         )}
       </div>
