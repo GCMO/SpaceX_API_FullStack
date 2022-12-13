@@ -25,6 +25,7 @@ const FavMasterList = () => {
         variables: {
           id: selectedLaunch.id }
           });
+          window.location.reload(false)
       console.log('favouriting launch' );
     }
 
