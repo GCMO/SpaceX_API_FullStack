@@ -3,7 +3,7 @@ import {useQuery} from '@apollo/client';
 import { SAVED_LAUNCH} from '../graphql/mutations';
 import {GET_LAUNCH} from '../graphql/queries';
 import Spinner from './Spinner';
-import { FaHeart } from "react-icons/fa";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { useMutation } from "@apollo/client";
 import { localClient } from "../ApolloClients";
 
@@ -45,7 +45,7 @@ const DetailList = ({ user }) => {
           <h4>LAUNCH DETAILS</h4>
           <button className="btn btn-danger p-1" onClick={favLaunch}>
             {launchDetails?.isFavourite ? (
-              <FaHeart size="14px" color="red">LIKE</FaHeart>
+              <FaRegHeart size="14px" color="red">LIKE</FaRegHeart>
             ) : (
               <FaHeart size="14px">LIKE</FaHeart>
             )}
