@@ -41,14 +41,14 @@ const MasterList = () => {
       <div className="spaceXLaunches">
         <h4>SPACEX LAUNCHES</h4>
         <hr />
-        <ul>
+        <ul  style={{cursor:'pointer'}}>
           {data?.launches.map((u) => (
             <li key={u.id} onClick={() => setSelectedLaunch(u)}>
               {u.id} - {u.mission_name}
             </li>
           ))}
         </ul>
-        <button className="btn btn-secondary btn-sm m-3" onClick={onClick}>
+        <button  style={{cursor:'pointer'}} className="btn btn-secondary btn-sm m-3" onClick={onClick}>
           <FaRocket /> LOAD MORE LAUNCHES
         </button>
       </div>

@@ -1,18 +1,20 @@
 Using SpaceX GraphQL API https://api.spacex.land/graphql/ presented the data on a master-detail-view page. 
 
 FRONT-END: ReactJS, Bootstrap and CSS (via CDN see index.html ) Apollo, GraphQL 
-
 BACK-END: Node, Express, GraphQL, Apollo 
-
 DOCKER: The app is fully dockerized just run: 
+
 --> docker-compose up -d
+
 --> open the browser at http://localhost:3000
 
 
 OBJECTIVE: 
+
 An exciting assignment during an recruitment process. Very tight deadline, had to be delivered in 2 days.
 
 ARCHITECTURE:
+
 So the main architecture of the project required a 2 step process:
 
 1- Fetch the data from the SpaceX offiicial API
