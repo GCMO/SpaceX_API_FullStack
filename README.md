@@ -3,3 +3,7 @@ Using SpaceX GraphQL API https://api.spacex.land/graphql/ presented the data on 
 FRONT-END: ReactJS, Bootstrap and CSS (via CDN see index.html ) Apollo, GraphQL 
 
 BACK-END: Node, Express, GraphQL, Apollo 
+
+DOCKER: The app is fully dockerized just run: 
+--> docker-compose up -d .
+--> open the browser at http://localhost:3000
