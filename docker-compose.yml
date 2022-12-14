@@ -12,9 +12,6 @@ services:
   
   frontend:
     image: 'frontend'
-    networks:
-      - frontend
-      
     build:
       context: ./client
       dockerfile: ./Dockerfile
