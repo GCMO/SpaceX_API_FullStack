@@ -1,6 +1,0 @@
-Query getFavorite ( $id: ID!){
-    getFavorite(id: $id){
-        id
-        mission_name
-    }
-} 
