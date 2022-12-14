@@ -44,7 +44,11 @@ const DetailList = ({ user }) => {
         <div className="d-flex justify-content-between">
           <h4>LAUNCH DETAILS</h4>
           <button className="btn btn-danger p-1" onClick={favLaunch}>
-            <FaHeart size="14px" /> LIKE
+            {launchDetails?.isFavourite ? (
+              <FaHeart size="14px" color="red">LIKE</FaHeart>
+            ) : (
+              <FaHeart size="14px">LIKE</FaHeart>
+            )}
           </button>
         </div>
         <hr />

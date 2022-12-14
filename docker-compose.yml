@@ -1,6 +1,7 @@
 version: '3'
 
 services:
+  
   backend:
     image: 'backend'
     build:
@@ -8,8 +9,12 @@ services:
       dockerfile: ./Dockerfile
     ports:
       - '4000:4000'
+  
   frontend:
     image: 'frontend'
+    networks:
+      - frontend
+      
     build:
       context: ./client
       dockerfile: ./Dockerfile
@@ -17,4 +22,5 @@ services:
       - '3000:3000'
     depends_on:
       - backend
+    
   

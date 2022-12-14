@@ -29,22 +29,6 @@ const MasterList = () => {
   // console.log('first10', data?.launches);
   // console.log(data?.launches[0].mission_name);
 
-  // send favLaunch to server with mutation
-  // const favLaunch = async () => {
-  //   console.log("favouriting launch", selectedLaunch);
-  //   mutateFunction({
-  //     variables: {
-  //       id: selectedLaunch.id,
-  //       mission_name: selectedLaunch.mission_name,
-  //       launch_date_local: selectedLaunch.launch_date_local,
-  //       // launch_site: selectedLaunch.launch_site.site_name_long,
-  //       rocket: selectedLaunch.rocket.rocket.name,
-  //       details: selectedLaunch.details,
-  //       links: selectedLaunch.links.flickr_images[0],
-  //     },
-  //   });
-  // };
-
   if (loading) {
     return <Spinner />;
   }
