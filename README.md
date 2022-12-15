@@ -40,4 +40,4 @@ export const localClient = new ApolloClient({
 
 2- GraphQL is pretty amazing, specially on the front-end. However, setting up the server was quite challenging. The queries and mutations must match with the schema, the resolvers and work coherently with the Client. So had to spend some time on that. Kept schema, resolvers and server all in one file to make it visually more understandable (but eventually will need to refactor it).
 
-3- App Dockerization for fast and straightforward. Just created a very similar Dockerfile for both client and server. And then merged them with a docker-compose.yml in the root folder.
+3- App Dockerization was fast and straightforward. Just created a Dockerfile for both client and server and then merged them with a docker-compose.yml in the root folder.
