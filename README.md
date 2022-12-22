@@ -20,11 +20,14 @@ The app is fully dockerized just run:
 So the main architecture of the project required a 2 step process:
 
 1- Fetch the data from the SpaceX offiicial API
+
 1.1- Display the data on a master-detail-view page
+
 1.2- Allow user to save & delete favorite launches
 
 2- Save the liked data in server memory
-2.1- Display the saved data in a separate page in the client
+
+2.1- Display the saved data in a separate page on the client side
 
 
 ### LEARNING CURVE:
