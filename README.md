@@ -1,20 +1,22 @@
+### OBJECTIVE: 
 Using SpaceX GraphQL API https://api.spacex.land/graphql/ presented the data on a master-detail-view page. 
+An exciting assignment during an recruitment process. Very tight deadline, had to be delivered in 2 days.
 
-FRONT-END: ReactJS, Bootstrap and CSS (via CDN see index.html ) Apollo, GraphQL 
-BACK-END: Node, Express, GraphQL, Apollo 
-DOCKER: The app is fully dockerized just run: 
+### FRONT-END: 
+ReactJS, Bootstrap and CSS (via CDN see index.html ) Apollo, GraphQL 
+
+### BACK-END: 
+Node, Express, GraphQL, Apollo 
+
+### DOCKER: 
+The app is fully dockerized just run: 
 
 --> docker-compose up -d
 
 --> open the browser at http://localhost:3000
 
 
-OBJECTIVE: 
-
-An exciting assignment during an recruitment process. Very tight deadline, had to be delivered in 2 days.
-
-ARCHITECTURE:
-
+### ARCHITECTURE:
 So the main architecture of the project required a 2 step process:
 
 1- Fetch the data from the SpaceX offiicial API
@@ -24,7 +26,8 @@ So the main architecture of the project required a 2 step process:
 2- Save the liked data in server memory
 2.1- Display the saved data in a separate page in the client
 
-LEARNING CURVE:
+
+### LEARNING CURVE:
 1- the application is fetching both from the SpaceX API and the local server memory via GraphQL and Apollo. So had to find a solution for React client. After some research, found out that I can use Apollo Client to fetch data from both sources. So removed the client from app.js and in the src folder create ApolloClient.js with the following splitter code:
 
 export const spaceXClient = new ApolloClient({
